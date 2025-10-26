@@ -32,7 +32,7 @@ const faqs = [
   },
   {
     q: "How do I contact the team?",
-    a: "You can email us at info@aievolutionexplorer.com. We love hearing from users!"
+  a: "You can email us at info@aisuretech.com. We love hearing from users!"
   },
   {
     q: "Will you add more animals or features?",

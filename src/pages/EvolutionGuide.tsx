@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Card } from "react-bootstrap";
 
-const guideContent = `# The Theory of Evolution: A Comprehensive Guide
+const guideContent = `# The Theory of Evolution: A Primer
 
 ## Introduction
 

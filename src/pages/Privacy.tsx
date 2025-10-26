@@ -44,7 +44,7 @@ const Privacy: React.FC = () => (
         </ul>
         <h2 className="h5 fw-bold mt-4">8. Contact Us</h2>
         <ul>
-          <li>If you have questions about this policy, please contact us at <a href="mailto:info@aievolutionexplorer.com">info@aievolutionexplorer.com</a>.</li>
+          <li>If you have questions about this policy, please contact us at <a href="mailto:info@aisuretech.com">info@aisuretech.com</a>.</li>
         </ul>
         <div className="text-muted text-center mt-4" style={{ fontSize: '1.05rem' }}>
           Last updated: October 25, 2025

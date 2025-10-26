@@ -10,7 +10,18 @@ const DID_YOU_KNOW_FACTS = [
   "Horses, rhinos, and tapirs are all part of the odd-toed ungulate family.",
   "The platypus is one of the few mammals that lay eggs.",
   "Octopuses have three hearts and blue blood!",
-  "The earliest known fossils are over 3.5 billion years old."
+  "The earliest known fossils are over 3.5 billion years old.",
+  "Butterflies taste with their feet!",
+  "Sharks existed before trees—by about 200 million years.",
+  "Giraffes have the same number of neck vertebrae as humans: seven.",
+  "A group of flamingos is called a 'flamboyance'.",
+  "Tardigrades (water bears) can survive in space and extreme environments.",
+  "The axolotl can regrow entire limbs and even parts of its brain.",
+  "Antarctica is the only continent without reptiles or snakes.",
+  "The cheetah is the fastest land animal, reaching speeds up to 70 mph (113 km/h).",
+  "Bats are the only mammals capable of true flight.",
+  "The mimic octopus can impersonate more than 15 different marine species.",
+  "Some frogs can be frozen solid and survive the winter, thawing out in spring."
 ];
 
 import { useLocation, useNavigate } from "react-router-dom";
@@ -40,7 +51,7 @@ const Explore: React.FC = () => {
     if (loading) {
       factIntervalRef.current = window.setInterval(() => {
         setFactIdx(idx => (idx + 1) % DID_YOU_KNOW_FACTS.length);
-      }, 7000);
+      }, 10000);
     } else {
       setFactIdx(0);
       if (factIntervalRef.current) window.clearInterval(factIntervalRef.current);
@@ -117,6 +128,7 @@ const Explore: React.FC = () => {
       .then((data) => {
         setHistory([{ ...data, question: `Timeline for ${species}` }]);
         setLoading(false);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       })
       .catch(() => {
         setError("Failed to load timeline");
@@ -147,6 +159,7 @@ const Explore: React.FC = () => {
       .then((data) => {
         setHistory(prev => [{ ...data, question: q.question }, ...prev]);
         setLoading(false);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       })
       .catch(() => {
         setError("Failed to load follow-up");
@@ -190,7 +203,7 @@ const Explore: React.FC = () => {
             <span className="spinner-border text-success mb-3" style={{ width: 48, height: 48 }} role="status" aria-hidden="true"></span>
             <div className="fw-semibold mb-2" style={{ fontSize: '1.15rem' }}>The AI is researching the evolutionary history...</div>
             <div className="text-muted fst-italic text-center" style={{ minHeight: 32, transition: 'opacity 0.5s' }}>
-              <span key={factIdx}>Did you know? {DID_YOU_KNOW_FACTS[factIdx]}</span>
+              <span key={factIdx}><strong>Did you know?</strong> <strong>{DID_YOU_KNOW_FACTS[factIdx]}</strong></span>
             </div>
           </div>
         )}
@@ -230,56 +243,60 @@ const Explore: React.FC = () => {
                           </ul>
                         </div>
                       )}
-                      {/* Raw JSON for development/debugging */}
-                      <details className="mt-3">
-                        <summary>Show raw JSON</summary>
-                        <pre className="bg-light border rounded p-2 small mt-2"><code>{JSON.stringify(item, null, 2)}</code></pre>
-                      </details>
-                    </div>
-                  </div>
-                  {/* On mobile, show image/follow-up after the first (current) card */}
-                  {idx === 0 && (
-                    <div className="d-block d-lg-none mt-3">
-                      <div className="card shadow-lg border-0 w-100 mb-4 d-flex flex-column align-items-center justify-content-center" style={{ maxWidth: 500, minHeight: 420 }}>
-                        <div className="card-body w-100 d-flex flex-column align-items-center justify-content-center">
-                          <div className="d-flex align-items-center justify-content-center w-100" style={{ minHeight: 240 }}>
-                            <img
-                              src={animalImageUrl || placeholderUrl}
-                              alt={history[0]?.species_or_group_name || 'Animal placeholder'}
-                              className="rounded shadow-sm border bg-light"
-                              style={{ width: 320, height: 240, objectFit: 'contain', background: '#f8f9fa' }}
-                              onError={e => { (e.target as HTMLImageElement).src = placeholderUrl; }}
-                            />
-                          </div>
-                          <div className="mt-2 text-muted text-center" style={{ fontSize: '0.95rem' }}>
-                            {animalImageUrl && imageAttribution && imageAttribution.title && imageAttribution.pageid ? (
-                              <span>
-                                Image: <a href={`https://commons.wikimedia.org/?curid=${imageAttribution.pageid}`} target="_blank" rel="noopener noreferrer">{imageAttribution.title.replace('File:', '')}</a> via Wikimedia Commons
-                              </span>
-                            ) : (
-                              'No image found, showing placeholder.'
-                            )}
-                          </div>
-                        </div>
-                      </div>
-                      {/* Follow-up buttons (only for first history item) */}
-                      {history[0] && Array.isArray(history[0].follow_up_questions) && history[0].follow_up_questions.length > 0 && (
-                        <div className="mb-2 w-100" style={{ marginTop: 32 }}>
-                          <h3 className="fw-semibold mb-2 text-center">Follow-Up Questions</h3>
-                          <div className="d-flex flex-wrap gap-2 justify-content-center">
-                            {history[0].follow_up_questions.map((q: any, i: number) => (
-                              <button
-                                key={i}
-                                className="btn btn-outline-primary btn-sm rounded-pill border-1"
-                                onClick={() => handleFollowUp(q)}
-                              >
-                                {q.question}
-                              </button>
-                            ))}
-                          </div>
-                        </div>
+                      {/* Raw JSON for development/debugging (hidden in production) */}
+                      {import.meta.env.MODE !== "production" && (
+                        <details className="mt-3">
+                          <summary>Show raw JSON</summary>
+                          <pre className="bg-light border rounded p-2 small mt-2"><code>{JSON.stringify(item, null, 2)}</code></pre>
+                        </details>
                       )}
                     </div>
+                  </div>
+                  {/* On mobile, show image/follow-up only after the first (current) card, not after follow-ups */}
+                  {idx === 0 && (
+                    <>
+                      <div className="d-block d-lg-none mt-3">
+                        <div className="card shadow-lg border-0 w-100 mb-4 d-flex flex-column align-items-center justify-content-center" style={{ maxWidth: 500, minHeight: 420 }}>
+                          <div className="card-body w-100 d-flex flex-column align-items-center justify-content-center">
+                            <div className="d-flex align-items-center justify-content-center w-100" style={{ minHeight: 240 }}>
+                              <img
+                                src={animalImageUrl || placeholderUrl}
+                                alt={history[0]?.species_or_group_name || 'Animal placeholder'}
+                                className="rounded shadow-sm border bg-light"
+                                style={{ width: 320, height: 240, objectFit: 'contain', background: '#f8f9fa' }}
+                                onError={e => { (e.target as HTMLImageElement).src = placeholderUrl; }}
+                              />
+                            </div>
+                            <div className="mt-2 text-muted text-center" style={{ fontSize: '0.95rem' }}>
+                              {animalImageUrl && imageAttribution && imageAttribution.title && imageAttribution.pageid ? (
+                                <span>
+                                  Image: <a href={`https://commons.wikimedia.org/?curid=${imageAttribution.pageid}`} target="_blank" rel="noopener noreferrer">{imageAttribution.title.replace('File:', '')}</a> via Wikimedia Commons
+                                </span>
+                              ) : (
+                                'No image found, showing placeholder.'
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                        {/* Follow-up buttons (only for first history item) */}
+                        {history[0] && Array.isArray(history[0].follow_up_questions) && history[0].follow_up_questions.length > 0 && (
+                          <div className="mb-2 w-100" style={{ marginTop: 32 }}>
+                            <h3 className="fw-semibold mb-2 text-center">Follow-Up Questions</h3>
+                            <div className="d-flex flex-wrap gap-2 justify-content-center">
+                              {history[0].follow_up_questions.map((q: any, i: number) => (
+                                <button
+                                  key={i}
+                                  className="btn btn-outline-primary btn-sm rounded-pill border-1"
+                                  onClick={() => handleFollowUp(q)}
+                                >
+                                  {q.question}
+                                </button>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    </>
                   )}
                 </React.Fragment>
               ))}
