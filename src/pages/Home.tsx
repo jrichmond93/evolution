@@ -115,29 +115,42 @@ const Home: React.FC = () => {
 
   return (
     <main className="container py-5 flex-grow-1 d-flex flex-column align-items-center justify-content-center">
+      {/* Welcome header and intro spanning 2 columns */}
+      <div className="row w-100 justify-content-center mb-4" style={{ maxWidth: 900 }}>
+        <div className="col-12 col-md-12">
+          <div className="text-center mb-3">
+            <h1 className="display-5 fw-bold text-success mb-2" style={{ fontFamily: 'Inter, Roboto, Arial, sans-serif' }}>Welcome to Evolution Explorer</h1>
+            <p className="lead text-secondary mb-0" style={{ maxWidth: 700, margin: '0 auto' }}>
+              Discover the evolutionary history of animals, explore fascinating facts, and learn about the diversity of life on Earth. Start by selecting an animal or searching for your favorite species.
+            </p>
+          </div>
+        </div>
+      </div>
       <div className="row w-100 justify-content-center" style={{ maxWidth: 900 }}>
         {/* Animal selection and info */}
         <div className="col-12 col-md-7 mb-4">
           <div className="card shadow-lg border-0 h-100">
             <div className="card-body d-flex flex-column align-items-center">
-              <h1 className="display-5 fw-bold text-success text-center mb-2" style={{ fontFamily: 'Inter, Roboto, Arial, sans-serif' }}>Welcome to Evolution Explorer</h1>
-              <p className="lead text-secondary text-center mb-4">
-                Discover the evolutionary history of animals, explore fascinating facts, and learn about the diversity of life on Earth. Start by selecting an animal or searching for your favorite species.
-              </p>
+              <div className="w-100 text-center mb-2" style={{ paddingBottom: '0.5rem' }}>
+                <span className="fw-semibold text-success" style={{ fontSize: '1.15rem' }}>All life is connected! Start exploring now</span>
+              </div>
               <div className="d-flex flex-wrap gap-2 mb-3 justify-content-center w-100">
                 <button
-                  className={`btn btn-outline-success btn-sm rounded-pill ${showPopular ? 'active text-white bg-success border-success' : ''}`}
+                  className={`btn btn-outline-success btn-sm rounded-pill px-4 py-2 ${showPopular ? 'active text-white bg-success border-success' : ''}`}
+                  style={{ minWidth: 90 }}
                   onClick={() => { setShowPopular(true); setSelectedCategory(""); }}
                 >Most Popular</button>
                 {categories.map(cat => (
                   <button
                     key={cat}
-                    className={`btn btn-outline-success btn-sm rounded-pill ${selectedCategory === cat ? 'active text-white bg-success border-success' : ''}`}
+                    className={`btn btn-outline-success btn-sm rounded-pill px-4 py-2 ${selectedCategory === cat ? 'active text-white bg-success border-success' : ''}`}
+                    style={{ minWidth: 90 }}
                     onClick={() => { setSelectedCategory(cat); setShowPopular(false); }}
                   >{cat}</button>
                 ))}
                 <button
-                  className={`btn btn-outline-success btn-sm rounded-pill ${!showPopular && !selectedCategory ? 'active text-white bg-success border-success' : ''}`}
+                  className={`btn btn-outline-success btn-sm rounded-pill px-4 py-2 ${!showPopular && !selectedCategory ? 'active text-white bg-success border-success' : ''}`}
+                  style={{ minWidth: 90 }}
                   onClick={() => { setShowPopular(false); setSelectedCategory(""); }}
                 >All</button>
               </div>
@@ -164,7 +177,6 @@ const Home: React.FC = () => {
                         onClick={() => { setSelectedAnimal(animal); setShowDropdown(false); setSearchTerm(animal.common_name); }}
                       >
                         <span>{animal.common_name} <span className="text-muted small">({animal.scientific_name})</span></span>
-                        <span className="text-muted small">{animal.category}</span>
                       </li>
                     ))}
                     {filteredAnimals.length === 0 && <li className="px-3 py-2 text-muted">No animals found.</li>}
@@ -187,9 +199,6 @@ const Home: React.FC = () => {
         <div className="col-12 col-md-5 mb-4 d-flex align-items-center justify-content-center">
           <div className="card shadow-lg border-0 h-100 d-flex flex-column align-items-center justify-content-center" style={{ maxWidth: 500, minHeight: 420 }}>
             <div className="card-body w-100 d-flex flex-column align-items-center justify-content-center">
-              <div className="mb-2 text-secondary text-center" style={{ fontSize: '1.1rem' }}>
-                {selectedAnimal ? `See what a ${selectedAnimal.common_name} looks like` : 'All life is connected!'}
-              </div>
               <div className="d-flex align-items-center justify-content-center w-100" style={{ minHeight: 213, minWidth: 320 }}>
                 <img
                   src={animalImageUrl || placeholderUrl}

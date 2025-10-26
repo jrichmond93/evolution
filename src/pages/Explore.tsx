@@ -195,61 +195,103 @@ const Explore: React.FC = () => {
           </div>
         )}
         <div className="row g-4">
-          {/* Left column: timeline text */}
+          {/* Timeline cards */}
           <div className="col-12 col-lg-7">
             <div className="d-flex flex-column gap-4">
               {history.map((item, idx) => (
-                <div
-                  className="card shadow border-0"
-                  key={idx}
-                  style={idx !== 0 ? { background: '#fffbe6' } : {}}
-                >
-                  <div className="card-body">
-                    <div className="mb-2"><span className="badge bg-primary me-2">{item.question}</span></div>
-                    <h2 className="h5 fw-bold mb-2">{item.title}</h2>
-                    <div className="mb-3 text-dark">
-                      <ReactMarkdown>{item.summary_md}</ReactMarkdown>
+                <React.Fragment key={idx}>
+                  <div
+                    className="card shadow border-0"
+                    style={idx !== 0 ? { background: '#fffbe6' } : {}}
+                  >
+                    <div className="card-body">
+                      <div className="mb-2"><span className="badge bg-primary me-2">{item.question}</span></div>
+                      <h2 className="h5 fw-bold mb-2">{item.title}</h2>
+                      <div className="mb-3 text-dark">
+                        <ReactMarkdown>{item.summary_md}</ReactMarkdown>
+                      </div>
+                      {Array.isArray(item.key_points) && item.key_points.length > 0 && (
+                        <div className="mb-3">
+                          <h3 className="fw-semibold mb-2">Key Points</h3>
+                          <ul className="ps-4">
+                            {item.key_points.map((point: string, i: number) => (
+                              <li key={i}>{point}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      {Array.isArray(item.related_eras) && item.related_eras.length > 0 && (
+                        <div className="mb-3">
+                          <h3 className="fw-semibold mb-2">Related Eras</h3>
+                          <ul className="ps-4">
+                            {item.related_eras.map((era: string, i: number) => (
+                              <li key={i}>{era}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      )}
+                      {/* Raw JSON for development/debugging */}
+                      <details className="mt-3">
+                        <summary>Show raw JSON</summary>
+                        <pre className="bg-light border rounded p-2 small mt-2"><code>{JSON.stringify(item, null, 2)}</code></pre>
+                      </details>
                     </div>
-                    {Array.isArray(item.key_points) && item.key_points.length > 0 && (
-                      <div className="mb-3">
-                        <h3 className="fw-semibold mb-2">Key Points</h3>
-                        <ul className="ps-4">
-                          {item.key_points.map((point: string, i: number) => (
-                            <li key={i}>{point}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                    {Array.isArray(item.related_eras) && item.related_eras.length > 0 && (
-                      <div className="mb-3">
-                        <h3 className="fw-semibold mb-2">Related Eras</h3>
-                        <ul className="ps-4">
-                          {item.related_eras.map((era: string, i: number) => (
-                            <li key={i}>{era}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                    {/* Raw JSON for development/debugging */}
-                    <details className="mt-3">
-                      <summary>Show raw JSON</summary>
-                      <pre className="bg-light border rounded p-2 small mt-2"><code>{JSON.stringify(item, null, 2)}</code></pre>
-                    </details>
                   </div>
-                </div>
+                  {/* On mobile, show image/follow-up after the first (current) card */}
+                  {idx === 0 && (
+                    <div className="d-block d-lg-none mt-3">
+                      <div className="card shadow-lg border-0 w-100 mb-4 d-flex flex-column align-items-center justify-content-center" style={{ maxWidth: 500, minHeight: 420 }}>
+                        <div className="card-body w-100 d-flex flex-column align-items-center justify-content-center">
+                          <div className="d-flex align-items-center justify-content-center w-100" style={{ minHeight: 240 }}>
+                            <img
+                              src={animalImageUrl || placeholderUrl}
+                              alt={history[0]?.species_or_group_name || 'Animal placeholder'}
+                              className="rounded shadow-sm border bg-light"
+                              style={{ width: 320, height: 240, objectFit: 'contain', background: '#f8f9fa' }}
+                              onError={e => { (e.target as HTMLImageElement).src = placeholderUrl; }}
+                            />
+                          </div>
+                          <div className="mt-2 text-muted text-center" style={{ fontSize: '0.95rem' }}>
+                            {animalImageUrl && imageAttribution && imageAttribution.title && imageAttribution.pageid ? (
+                              <span>
+                                Image: <a href={`https://commons.wikimedia.org/?curid=${imageAttribution.pageid}`} target="_blank" rel="noopener noreferrer">{imageAttribution.title.replace('File:', '')}</a> via Wikimedia Commons
+                              </span>
+                            ) : (
+                              'No image found, showing placeholder.'
+                            )}
+                          </div>
+                        </div>
+                      </div>
+                      {/* Follow-up buttons (only for first history item) */}
+                      {history[0] && Array.isArray(history[0].follow_up_questions) && history[0].follow_up_questions.length > 0 && (
+                        <div className="mb-2 w-100" style={{ marginTop: 32 }}>
+                          <h3 className="fw-semibold mb-2 text-center">Follow-Up Questions</h3>
+                          <div className="d-flex flex-wrap gap-2 justify-content-center">
+                            {history[0].follow_up_questions.map((q: any, i: number) => (
+                              <button
+                                key={i}
+                                className="btn btn-outline-primary btn-sm rounded-pill border-1"
+                                onClick={() => handleFollowUp(q)}
+                              >
+                                {q.question}
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </React.Fragment>
               ))}
             </div>
             {error && (
               <div className="alert alert-danger w-100 mt-3">{error}</div>
             )}
           </div>
-          {/* Right column: image and follow-up */}
-          <div className="col-12 col-lg-5 d-flex flex-column align-items-center">
+          {/* On desktop, keep image/follow-up in right column */}
+          <div className="d-none d-lg-flex col-lg-5 flex-column align-items-center">
             <div className="card shadow-lg border-0 w-100 mb-4 d-flex flex-column align-items-center justify-content-center" style={{ maxWidth: 500, minHeight: 420 }}>
               <div className="card-body w-100 d-flex flex-column align-items-center justify-content-center">
-                <div className="mb-2 text-secondary text-center" style={{ fontSize: '1.1rem' }}>
-                  {history[0]?.species_or_group_name ? `Image for ${history[0].species_or_group_name}` : 'Animal Image'}
-                </div>
                 <div className="d-flex align-items-center justify-content-center w-100" style={{ minHeight: 240 }}>
                   <img
                     src={animalImageUrl || placeholderUrl}

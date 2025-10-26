@@ -13,6 +13,7 @@ import Explore from "./pages/Explore";
 import EvolutionGuide from "./pages/EvolutionGuide";
 import CharlesDarwin from "./pages/CharlesDarwin";
 import LoginPage from "./pages/LoginPage";
+import Resources from "./pages/Resources";
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
   <>{children}</>
@@ -35,6 +36,7 @@ const App: React.FC = () => {
           <Route path="/evolution-guide" element={<Layout><EvolutionGuide /></Layout>} />
           <Route path="/charles-darwin" element={<Layout><CharlesDarwin /></Layout>} />
           <Route path="/login" element={<Layout><LoginPage /></Layout>} />
+          <Route path="/resources" element={<Layout><Resources /></Layout>} />
         </Routes>
       </main>
       <Footer />
