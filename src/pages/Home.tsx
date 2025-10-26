@@ -19,7 +19,7 @@ const Home: React.FC = () => {
   // Pick a random placeholder image on load
   const [randomPlaceholder, setRandomPlaceholder] = useState<string>('/images/placeholder1.png');
   useEffect(() => {
-    const n = Math.floor(Math.random() * 5) + 1;
+    const n = Math.floor(Math.random() * 9) + 1;
     setRandomPlaceholder(`/images/placeholder${n}.png`);
   }, []);
   const placeholderUrl = randomPlaceholder;
