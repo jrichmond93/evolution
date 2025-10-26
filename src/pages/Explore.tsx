@@ -49,9 +49,12 @@ const Explore: React.FC = () => {
   const factIntervalRef = useRef<number | null>(null);
   useEffect(() => {
     if (loading) {
+      // Start at a random fact index for more variety
+      const randomStart = Math.floor(Math.random() * DID_YOU_KNOW_FACTS.length);
+      setFactIdx(randomStart);
       factIntervalRef.current = window.setInterval(() => {
         setFactIdx(idx => (idx + 1) % DID_YOU_KNOW_FACTS.length);
-      }, 10000);
+      }, 7000);
     } else {
       setFactIdx(0);
       if (factIntervalRef.current) window.clearInterval(factIntervalRef.current);
@@ -252,8 +255,8 @@ const Explore: React.FC = () => {
                       )}
                     </div>
                   </div>
-                  {/* On mobile, show image/follow-up only after the first (current) card, not after follow-ups */}
-                  {idx === 0 && (
+                  {/* Only show image/follow-up for the very first post (when history.length === 1 and idx === 0) */}
+                  {idx === 0 && history.length === 1 && (
                     <>
                       <div className="d-block d-lg-none mt-3">
                         <div className="card shadow-lg border-0 w-100 mb-4 d-flex flex-column align-items-center justify-content-center" style={{ maxWidth: 500, minHeight: 420 }}>
@@ -305,48 +308,50 @@ const Explore: React.FC = () => {
               <div className="alert alert-danger w-100 mt-3">{error}</div>
             )}
           </div>
-          {/* On desktop, keep image/follow-up in right column */}
-          <div className="d-none d-lg-flex col-lg-5 flex-column align-items-center">
-            <div className="card shadow-lg border-0 w-100 mb-4 d-flex flex-column align-items-center justify-content-center" style={{ maxWidth: 500, minHeight: 420 }}>
-              <div className="card-body w-100 d-flex flex-column align-items-center justify-content-center">
-                <div className="d-flex align-items-center justify-content-center w-100" style={{ minHeight: 240 }}>
-                  <img
-                    src={animalImageUrl || placeholderUrl}
-                    alt={history[0]?.species_or_group_name || 'Animal placeholder'}
-                    className="rounded shadow-sm border bg-light"
-                    style={{ width: 320, height: 240, objectFit: 'contain', background: '#f8f9fa' }}
-                    onError={e => { (e.target as HTMLImageElement).src = placeholderUrl; }}
-                  />
-                </div>
-                <div className="mt-2 text-muted text-center" style={{ fontSize: '0.95rem' }}>
-                  {animalImageUrl && imageAttribution && imageAttribution.title && imageAttribution.pageid ? (
-                    <span>
-                      Image: <a href={`https://commons.wikimedia.org/?curid=${imageAttribution.pageid}`} target="_blank" rel="noopener noreferrer">{imageAttribution.title.replace('File:', '')}</a> via Wikimedia Commons
-                    </span>
-                  ) : (
-                    'No image found, showing placeholder.'
-                  )}
+          {/* On desktop, keep image/follow-up in right column, but only for the very first post */}
+          {history.length === 1 && (
+            <div className="d-none d-lg-flex col-lg-5 flex-column align-items-center">
+              <div className="card shadow-lg border-0 w-100 mb-4 d-flex flex-column align-items-center justify-content-center" style={{ maxWidth: 500, minHeight: 420 }}>
+                <div className="card-body w-100 d-flex flex-column align-items-center justify-content-center">
+                  <div className="d-flex align-items-center justify-content-center w-100" style={{ minHeight: 240 }}>
+                    <img
+                      src={animalImageUrl || placeholderUrl}
+                      alt={history[0]?.species_or_group_name || 'Animal placeholder'}
+                      className="rounded shadow-sm border bg-light"
+                      style={{ width: 320, height: 240, objectFit: 'contain', background: '#f8f9fa' }}
+                      onError={e => { (e.target as HTMLImageElement).src = placeholderUrl; }}
+                    />
+                  </div>
+                  <div className="mt-2 text-muted text-center" style={{ fontSize: '0.95rem' }}>
+                    {animalImageUrl && imageAttribution && imageAttribution.title && imageAttribution.pageid ? (
+                      <span>
+                        Image: <a href={`https://commons.wikimedia.org/?curid=${imageAttribution.pageid}`} target="_blank" rel="noopener noreferrer">{imageAttribution.title.replace('File:', '')}</a> via Wikimedia Commons
+                      </span>
+                    ) : (
+                      'No image found, showing placeholder.'
+                    )}
+                  </div>
                 </div>
               </div>
+              {/* Follow-up buttons (only for first history item) */}
+              {history[0] && Array.isArray(history[0].follow_up_questions) && history[0].follow_up_questions.length > 0 && (
+                <div className="mb-2 w-100" style={{ marginTop: 32 }}>
+                  <h3 className="fw-semibold mb-2 text-center">Follow-Up Questions</h3>
+                  <div className="d-flex flex-wrap gap-2 justify-content-center">
+                    {history[0].follow_up_questions.map((q: any, i: number) => (
+                      <button
+                        key={i}
+                        className="btn btn-outline-primary btn-sm rounded-pill border-1"
+                        onClick={() => handleFollowUp(q)}
+                      >
+                        {q.question}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
-            {/* Follow-up buttons (only for first history item) */}
-            {history[0] && Array.isArray(history[0].follow_up_questions) && history[0].follow_up_questions.length > 0 && (
-              <div className="mb-2 w-100" style={{ marginTop: 32 }}>
-                <h3 className="fw-semibold mb-2 text-center">Follow-Up Questions</h3>
-                <div className="d-flex flex-wrap gap-2 justify-content-center">
-                  {history[0].follow_up_questions.map((q: any, i: number) => (
-                    <button
-                      key={i}
-                      className="btn btn-outline-primary btn-sm rounded-pill border-1"
-                      onClick={() => handleFollowUp(q)}
-                    >
-                      {q.question}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
+          )}
         </div>
       </div>
       {/* Toast for errors */}
