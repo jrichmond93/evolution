@@ -54,7 +54,7 @@ const Explore: React.FC = () => {
       setFactIdx(randomStart);
       factIntervalRef.current = window.setInterval(() => {
         setFactIdx(idx => (idx + 1) % DID_YOU_KNOW_FACTS.length);
-      }, 7000);
+      }, 10000);
     } else {
       setFactIdx(0);
       if (factIntervalRef.current) window.clearInterval(factIntervalRef.current);

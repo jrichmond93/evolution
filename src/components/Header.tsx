@@ -9,8 +9,16 @@ const Header: React.FC = () => {
   return (
     <Navbar bg="success" variant="dark" expand="md" sticky="top" className="shadow">
       <Container>
-        <Navbar.Brand as={Link} to="/" style={{ fontWeight: 800, letterSpacing: 1 }}>
-          Evolution Explorer
+        <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
+          <img
+            src="/images/logo.jpg"
+            alt="Evolution Explorer Logo"
+            width={40}
+            height={40}
+            className="me-2 rounded-circle bg-white"
+            style={{ objectFit: "cover" }}
+          />
+          <span className="fw-bold fs-4 ms-1 align-middle">Evolution Explorer</span>
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="main-navbar-nav" />
         <Navbar.Collapse id="main-navbar-nav">
