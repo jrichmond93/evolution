@@ -25,16 +25,18 @@ const DID_YOU_KNOW_FACTS = [
   "Some frogs can be frozen solid and survive the winter, thawing out in spring."
 ];
 
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import ReactMarkdown from "react-markdown";
 
 
 const Explore: React.FC = () => {
   const { isAuthenticated, user } = useAuth0();
+  const { animalSlug } = useParams<{ animalSlug?: string }>();
   const [animal, setAnimal] = useState<any>(null);
   const [history, setHistory] = useState<any[]>([]); // Card list of timelines/follow-ups
   const [loading, setLoading] = useState(false);
+  const [fetchingAnimal, setFetchingAnimal] = useState(false);
   const [error, setError] = useState("");
   const [showToast, setShowToast] = useState(false);
   const [animalImageUrl, setAnimalImageUrl] = useState<string | undefined>(undefined);
@@ -95,6 +97,35 @@ const Explore: React.FC = () => {
         setImageAttribution(undefined);
       });
   }, [animal, history]);
+
+  // Fetch animal from API if accessed via URL slug without location.state
+  useEffect(() => {
+    if (animalSlug && !location.state?.animal && !animal && !fetchingAnimal) {
+      setFetchingAnimal(true);
+      fetch('https://evolution.aisuretech.net/api/evolution/animals')
+        .then(res => res.json())
+        .then(data => {
+          const foundAnimal = data.find((a: any) => 
+            a.common_name.toLowerCase().replace(/\s+/g, '-') === animalSlug.toLowerCase()
+          );
+          if (foundAnimal) {
+            setAnimal(foundAnimal);
+            // Remove prerendered content after React has the data
+            const prerenderContent = document.getElementById('prerendered-content');
+            if (prerenderContent) {
+              prerenderContent.remove();
+            }
+          } else {
+            navigate('/');
+          }
+        })
+        .catch(err => {
+          console.error('Error fetching animal:', err);
+          navigate('/');
+        })
+        .finally(() => setFetchingAnimal(false));
+    }
+  }, [animalSlug, location.state, animal, navigate, fetchingAnimal]);
 
   // Handle prerender mode from URL params
   useEffect(() => {

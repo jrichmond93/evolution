@@ -32,7 +32,7 @@ const App: React.FC = () => {
           <Route path="/privacy" element={<Layout><Privacy /></Layout>} />
           <Route path="/terms" element={<Layout><Terms /></Layout>} />
           <Route path="/faq" element={<Layout><FAQ /></Layout>} />
-          <Route path="/explore" element={<Layout><Explore /></Layout>} />
+          <Route path="/explore/:animalSlug?" element={<Layout><Explore /></Layout>} />
           <Route path="/evolution-guide" element={<Layout><EvolutionGuide /></Layout>} />
           <Route path="/charles-darwin" element={<Layout><CharlesDarwin /></Layout>} />
           <Route path="/login" element={<Layout><LoginPage /></Layout>} />

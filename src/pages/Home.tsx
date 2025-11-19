@@ -110,7 +110,8 @@ const Home: React.FC = () => {
   const handleStart = () => {
     if (selectedAnimal) {
       const sessionId = generateSessionId();
-      navigate("/explore", { state: { animal: selectedAnimal, user_session_id: sessionId } });
+      const slug = selectedAnimal.common_name.toLowerCase().replace(/\s+/g, '-');
+      navigate(`/explore/${slug}`, { state: { animal: selectedAnimal, user_session_id: sessionId } });
     }
   };
 
