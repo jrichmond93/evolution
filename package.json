@@ -7,7 +7,10 @@
     "dev": "vite",
     "build": "tsc -b && vite build && npm run prerender",
     "build:fast": "tsc -b && vite build",
-    "prerender": "node scripts/prerender-simple.js",
+    "build:simple": "tsc -b && vite build && npm run prerender:simple",
+    "prerender": "node scripts/prerender-api.js",
+    "prerender:ssr": "node scripts/prerender-ssr.js",
+    "prerender:simple": "node scripts/prerender-simple.js",
     "lint": "eslint .",
     "preview": "vite preview"
   },

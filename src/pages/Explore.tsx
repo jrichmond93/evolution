@@ -96,7 +96,25 @@ const Explore: React.FC = () => {
       });
   }, [animal, history]);
 
+  // Handle prerender mode from URL params
   useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const isPrerender = params.get('prerender') === 'true';
+    const animalId = params.get('animal_id');
+    const animalName = params.get('animal_name');
+    
+    if (isPrerender && animalId && animalName) {
+      // For prerendering, create a mock animal object
+      setAnimal({
+        id: animalId,
+        common_name: animalName,
+        scientific_name: animalName // Will be updated from API if available
+      });
+      setUserSessionId('PRERENDER-SESSION');
+      return;
+    }
+
+    // Normal navigation flow
     if (location.state && location.state.animal) {
       setAnimal(location.state.animal);
       setUserSessionId(location.state.user_session_id || null);
@@ -104,7 +122,7 @@ const Explore: React.FC = () => {
       setAnimal(null);
       setUserSessionId(null);
     }
-  }, [location.state]);
+  }, [location.state, location.search]);
 
   useEffect(() => {
     if (animal) {
