@@ -42,6 +42,10 @@
   ],
   "rewrites": [
     {
+      "source": "/explore/:animal",
+      "destination": "/explore/:animal.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
