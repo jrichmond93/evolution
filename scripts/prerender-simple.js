@@ -102,10 +102,11 @@ function generateAnimalHTML(animal, baseHTML) {
 async function updateSitemap(animals) {
   console.log('\nUpdating sitemap.xml...');
   
+  const publicSitemapPath = path.join(__dirname, '../public/sitemap.xml');
+  
   // Copy sitemap from public to dist if not exists
-  const publicSitemap = path.join(__dirname, '../public/sitemap.xml');
-  if (!fs.existsSync(SITEMAP_PATH) && fs.existsSync(publicSitemap)) {
-    fs.copyFileSync(publicSitemap, SITEMAP_PATH);
+  if (!fs.existsSync(SITEMAP_PATH) && fs.existsSync(publicSitemapPath)) {
+    fs.copyFileSync(publicSitemapPath, SITEMAP_PATH);
   }
   
   if (!fs.existsSync(SITEMAP_PATH)) {
@@ -135,6 +136,10 @@ async function updateSitemap(animals) {
   
   fs.writeFileSync(SITEMAP_PATH, sitemap, 'utf8');
   console.log(`✓ Added ${animals.length} animal pages to sitemap.xml`);
+  
+  // Also copy the updated sitemap back to public/ so it gets committed to git
+  fs.writeFileSync(publicSitemapPath, sitemap, 'utf8');
+  console.log('✓ Updated public/sitemap.xml for git commit');
 }
 
 async function main() {
