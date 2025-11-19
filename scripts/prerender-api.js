@@ -210,9 +210,6 @@ function generateAnimalHTML(animal, timeline, baseHTML) {
         <p class="text-center lead mb-4"><em>${animal.scientific_name}</em></p>
         <p class="text-center text-muted mb-5">Category: ${animal.category || 'Unknown'}</p>
         ${timelineHTML}
-        <div class="text-center mt-5">
-          <p class="text-muted">This content was pre-rendered for search engines. <a href="/explore">Explore more animals</a></p>
-        </div>
       </div>
     </div>
   `;
