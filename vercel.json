@@ -40,18 +40,10 @@
       ]
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/explore/([^/]+)",
-      "dest": "/explore/$1.html",
-      "check": true
-    },
-    {
-      "handle": "filesystem"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/explore/:animal",
+      "destination": "/explore/:animal.html"
     }
   ]
 }
