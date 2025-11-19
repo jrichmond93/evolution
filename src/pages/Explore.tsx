@@ -98,10 +98,40 @@ const Explore: React.FC = () => {
       });
   }, [animal, history]);
 
-  // Fetch animal from API if accessed via URL slug without location.state
+  // Extract animal data from prerendered content or fetch from API
   useEffect(() => {
     if (animalSlug && !location.state?.animal && !animal && !fetchingAnimal) {
       setFetchingAnimal(true);
+      
+      // First, try to extract animal data from prerendered HTML
+      const prerenderContent = document.getElementById('prerendered-content');
+      if (prerenderContent) {
+        const h1 = prerenderContent.querySelector('h1');
+        const scientificName = prerenderContent.querySelector('p.lead em');
+        const category = prerenderContent.querySelector('p.text-muted');
+        
+        if (h1 && scientificName) {
+          const commonName = h1.textContent || '';
+          const scientific = scientificName.textContent || '';
+          const cat = category?.textContent?.replace('Category: ', '') || 'Unknown';
+          
+          // Create animal object from prerendered data
+          const extractedAnimal = {
+            id: animalSlug,
+            common_name: commonName,
+            scientific_name: scientific,
+            category: cat
+          };
+          
+          setAnimal(extractedAnimal);
+          setFetchingAnimal(false);
+          console.log('Extracted animal data from prerendered HTML (no API call needed)');
+          return;
+        }
+      }
+      
+      // Fallback: fetch from API if prerendered content not found (dev mode, etc.)
+      console.log('No prerendered content found, fetching from API');
       fetch('https://evolution.aisuretech.net/api/evolution/animals')
         .then(res => res.json())
         .then(data => {
@@ -181,6 +211,14 @@ const Explore: React.FC = () => {
       .then((data) => {
         setHistory([{ ...data, question: `Timeline for ${species}` }]);
         setLoading(false);
+        
+        // Remove prerendered content after timeline data is loaded
+        const prerenderContent = document.getElementById('prerendered-content');
+        if (prerenderContent) {
+          prerenderContent.remove();
+          console.log('Removed prerendered content after loading fresh timeline data');
+        }
+        
         window.scrollTo({ top: 0, behavior: 'smooth' });
       })
       .catch(() => {
