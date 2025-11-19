@@ -85,7 +85,7 @@ function generateAnimalHTML(animal, baseHTML) {
     "@type": "Article",
     "headline": title,
     "description": description,
-    "url": `https://evolutionexplorerai.com/explore/${sanitizeFilename(animal.common_name)}`,
+    "url": `https://www.aievolutionexplorer.com/explore/${sanitizeFilename(animal.common_name)}`,
     "about": {
       "@type": "Thing",
       "name": animal.common_name,
@@ -117,14 +117,14 @@ async function updateSitemap(animals) {
   let sitemap = fs.readFileSync(SITEMAP_PATH, 'utf8');
   
   // Remove existing prerendered explore URLs
-  sitemap = sitemap.replace(/<url>\s*<loc>https:\/\/evolutionexplorerai\.com\/explore\/[^<]+<\/loc>[\s\S]*?<\/url>\s*/g, '');
+  sitemap = sitemap.replace(/<url>\s*<loc>https:\/\/www\.aievolutionexplorer\.com\/explore\/[^<]+<\/loc>[\s\S]*?<\/url>\s*/g, '');
   
   const today = new Date().toISOString().split('T')[0];
   const exploreUrls = animals
     .map(animal => {
       const filename = sanitizeFilename(animal.common_name);
       return `  <url>
-    <loc>https://evolutionexplorerai.com/explore/${filename}</loc>
+    <loc>https://www.aievolutionexplorer.com/explore/${filename}</loc>
     <lastmod>${today}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>

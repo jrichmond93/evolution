@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # Sitemap
-Sitemap: https://evolutionexplorerai.com/sitemap.xml
+Sitemap: https://www.aievolutionexplorer.com/sitemap.xml
 
 # Crawl delay
 Crawl-delay: 1
