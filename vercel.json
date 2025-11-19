@@ -1,6 +1,7 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
+  "framework": null,
   "cleanUrls": true,
   "trailingSlash": false,
   "headers": [
@@ -46,7 +47,7 @@
       "destination": "/explore/:animal.html"
     },
     {
-      "source": "/(.*)",
+      "source": "/:path((?!assets|images|favicon).*)",
       "destination": "/index.html"
     }
   ]
