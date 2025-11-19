@@ -1,9 +1,6 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "framework": null,
-  "cleanUrls": true,
-  "trailingSlash": false,
   "headers": [
     {
       "source": "/robots.txt",
@@ -42,13 +39,15 @@
     }
   ],
   "rewrites": [
-    {
-      "source": "/explore/:animal",
-      "destination": "/explore/:animal.html"
-    },
-    {
-      "source": "/:path((?!assets|images|favicon).*)",
-      "destination": "/index.html"
-    }
+    { "source": "/explore/:animal", "destination": "/explore/:animal.html" },
+    { "source": "/about", "destination": "/index.html" },
+    { "source": "/contact", "destination": "/index.html" },
+    { "source": "/privacy", "destination": "/index.html" },
+    { "source": "/terms", "destination": "/index.html" },
+    { "source": "/faq", "destination": "/index.html" },
+    { "source": "/evolution-guide", "destination": "/index.html" },
+    { "source": "/charles-darwin", "destination": "/index.html" },
+    { "source": "/login", "destination": "/index.html" },
+    { "source": "/resources", "destination": "/index.html" }
   ]
 }
