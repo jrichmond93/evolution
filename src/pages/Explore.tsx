@@ -188,7 +188,7 @@ const Explore: React.FC = () => {
         title={animal ? `Explore ${animal.common_name} - Evolution Timeline` : "Explore Animals - Interactive Evolution Timelines"}
         description={animal ? `Discover the evolutionary history of ${animal.common_name} (${animal.scientific_name}) with AI-generated timelines, fun facts, and detailed information about adaptation and natural selection.` : "Explore individual animals and their evolutionary history with AI-generated timelines, fun facts, and detailed information about adaptation and natural selection."}
         keywords="explore animals, evolutionary timeline, animal history, species, biodiversity, natural selection, adaptation"
-        canonicalUrl="https://evolutionexplorerai.com/explore"
+        canonicalUrl="https://aievolutionexplorer.com/explore"
       />
       <main className="container py-5 flex-grow-1 d-flex flex-column align-items-center justify-content-center">
       <div className="w-100" style={{ maxWidth: 1100 }}>

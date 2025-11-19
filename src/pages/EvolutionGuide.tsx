@@ -112,7 +112,7 @@ const EvolutionGuide: React.FC = () => (
       title="Evolution Guide - Understanding Natural Selection & Adaptation"
       description="Comprehensive guide to evolution covering natural selection, adaptation, fossil evidence, and the history of evolutionary theory. Perfect for students and educators."
       keywords="evolution guide, natural selection, adaptation, fossils, Darwin, biology education, evolutionary theory, science learning"
-      canonicalUrl="https://evolutionexplorerai.com/evolution-guide"
+      canonicalUrl="https://aievolutionexplorer.com/evolution-guide"
     />
     <Container className="py-5 flex-grow-1 d-flex flex-column align-items-center justify-content-center">
     <Card className="shadow-lg border-0 w-100" style={{ maxWidth: 900 }}>

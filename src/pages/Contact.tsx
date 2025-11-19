@@ -8,7 +8,7 @@ const Contact: React.FC = () => (
       title="Contact Us - Evolution Explorer"
       description="Get in touch with the Evolution Explorer team. We love hearing from users, educators, and anyone passionate about evolution and natural history."
       keywords="contact, support, feedback, email, evolution explorer team, get in touch"
-      canonicalUrl="https://evolutionexplorerai.com/contact"
+      canonicalUrl="https://aievolutionexplorer.com/contact"
     />
     <main className="container py-5 flex-grow-1 d-flex flex-column align-items-center justify-content-center">
     <Card className="shadow-lg border-0 w-100" style={{ maxWidth: 600 }}>

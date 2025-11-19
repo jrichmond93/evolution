@@ -105,14 +105,14 @@ async function updateSitemap(prerenderedPages) {
   let sitemap = fs.readFileSync(SITEMAP_PATH, 'utf8');
   
   // Remove existing explore URLs (if any)
-  sitemap = sitemap.replace(/<url>\s*<loc>https:\/\/evolutionexplorerai\.com\/explore\/[^<]+<\/loc>[\s\S]*?<\/url>\s*/g, '');
+  sitemap = sitemap.replace(/<url>\s*<loc>https:\/\/aievolutionexplorer\.com\/explore\/[^<]+<\/loc>[\s\S]*?<\/url>\s*/g, '');
   
   // Generate new explore URLs
   const today = new Date().toISOString().split('T')[0];
   const exploreUrls = prerenderedPages
     .filter(p => p !== null)
     .map(page => `  <url>
-    <loc>https://evolutionexplorerai.com${page.url}</loc>
+    <loc>https://aievolutionexplorer.com${page.url}</loc>
     <lastmod>${today}</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>

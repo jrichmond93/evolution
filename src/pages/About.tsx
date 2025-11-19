@@ -8,7 +8,7 @@ const About: React.FC = () => (
       title="About Us - Evolution Explorer"
       description="Learn about Evolution Explorer, our mission to make evolutionary science accessible and engaging through interactive technology and AI-powered educational tools."
       keywords="about, mission, team, evolution education, science outreach, educational platform"
-      canonicalUrl="https://evolutionexplorerai.com/about"
+      canonicalUrl="https://aievolutionexplorer.com/about"
     />
     <main className="container py-5 flex-grow-1 d-flex flex-column align-items-center justify-content-center">
     <Card className="shadow-lg border-0 w-100" style={{ maxWidth: 700 }}>

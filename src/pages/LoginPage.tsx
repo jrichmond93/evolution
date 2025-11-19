@@ -13,7 +13,7 @@ const LoginPage: React.FC = () => {
         title="Log In - Evolution Explorer"
         description="Log in to Evolution Explorer to save your favorite animals, track your learning journey, and access personalized evolutionary content."
         keywords="login, sign in, authentication, user account, sign up, register"
-        canonicalUrl="https://evolutionexplorerai.com/login"
+        canonicalUrl="https://aievolutionexplorer.com/login"
       />
       <main className="container py-5 d-flex flex-column align-items-center justify-content-center" style={{ minHeight: '60vh' }}>
       <div className="card shadow-lg border-0 p-4" style={{ maxWidth: 400 }}>

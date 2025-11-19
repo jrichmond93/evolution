@@ -8,7 +8,7 @@ const Terms: React.FC = () => (
       title="Terms of Service - Evolution Explorer"
       description="Terms of service for Evolution Explorer. Read our guidelines and policies for using our educational platform."
       keywords="terms of service, terms and conditions, user agreement, legal, terms of use"
-      canonicalUrl="https://evolutionexplorerai.com/terms"
+      canonicalUrl="https://aievolutionexplorer.com/terms"
     />
     <main className="container py-5 flex-grow-1 d-flex flex-column align-items-center justify-content-center">
     <Card className="shadow-lg border-0 w-100" style={{ maxWidth: 700 }}>

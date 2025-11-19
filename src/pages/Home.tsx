@@ -120,7 +120,7 @@ const Home: React.FC = () => {
         title="Evolution Explorer - Discover Animal Evolution & Natural History"
         description="Explore the animal kingdom and evolutionary history with AI-powered insights. Interactive timelines, fun facts, and educational resources about evolution, animals, and natural history."
         keywords="evolution, animal explorer, animals, natural history, biology, science, education, AI, interactive learning, natural selection"
-        canonicalUrl="https://evolutionexplorerai.com/"
+        canonicalUrl="https://aievolutionexplorer.com/"
       />
       <main className="container py-5 flex-grow-1 d-flex flex-column align-items-center justify-content-center">
       {/* Welcome header and intro spanning 2 columns */}

@@ -14,7 +14,7 @@ const SEO: React.FC<SEOProps> = ({
   description, 
   keywords = 'evolution, animal explorer, animals, education, science, biology',
   ogImage = '/og-image.png',
-  canonicalUrl = 'https://evolutionexplorerai.com'
+  canonicalUrl = 'https://aievolutionexplorer.com'
 }) => {
   return (
     <>

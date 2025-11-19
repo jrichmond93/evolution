@@ -55,7 +55,7 @@ const FAQ: React.FC = () => (
       title="FAQ - Frequently Asked Questions - Evolution Explorer"
       description="Frequently asked questions about Evolution Explorer. Learn how to use our platform, explore animals, and discover evolutionary history."
       keywords="faq, help, questions, answers, how to use, tutorial, evolution explorer guide"
-      canonicalUrl="https://evolutionexplorerai.com/faq"
+      canonicalUrl="https://aievolutionexplorer.com/faq"
     />
     <main className="container py-5 flex-grow-1 d-flex flex-column align-items-center justify-content-center">
     <Card className="shadow-lg border-0 w-100" style={{ maxWidth: 700 }}>

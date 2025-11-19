@@ -131,7 +131,7 @@ const Resources: React.FC = () => (
       title="Resources - Evolution, Nature & AI Learning - Evolution Explorer"
       description="Curated educational resources on evolution, natural history, artificial intelligence, and AI-powered learning tools. Explore museums, documentaries, and interactive websites."
       keywords="resources, educational links, museums, documentaries, AI tools, learning resources, evolution resources, nature education"
-      canonicalUrl="https://evolutionexplorerai.com/resources"
+      canonicalUrl="https://aievolutionexplorer.com/resources"
     />
     <main className="container py-5 flex-grow-1 d-flex flex-column align-items-center justify-content-center">
     <div className="row w-100 justify-content-center" style={{ maxWidth: 900 }}>
