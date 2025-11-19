@@ -1,8 +1,16 @@
 import React from "react";
 import { Card } from "react-bootstrap";
+import SEO from "../components/SEO";
 
 const Privacy: React.FC = () => (
-  <main className="container py-5 flex-grow-1 d-flex flex-column align-items-center justify-content-center">
+  <>
+    <SEO 
+      title="Privacy Policy - Evolution Explorer"
+      description="Evolution Explorer privacy policy. Learn how we protect your data and respect your privacy while you explore the animal kingdom."
+      keywords="privacy policy, data protection, user privacy, GDPR, security"
+      canonicalUrl="https://evolutionexplorerai.com/privacy"
+    />
+    <main className="container py-5 flex-grow-1 d-flex flex-column align-items-center justify-content-center">
     <Card className="shadow-lg border-0 w-100" style={{ maxWidth: 700 }}>
       <Card.Body>
         <h1 className="display-5 fw-bold text-success mb-4 text-center">Privacy Policy</h1>
@@ -52,6 +60,7 @@ const Privacy: React.FC = () => (
       </Card.Body>
     </Card>
   </main>
+  </>
 );
 
 export default Privacy;

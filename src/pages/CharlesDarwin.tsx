@@ -2,6 +2,7 @@ import React from "react";
 import { Container, Card } from "react-bootstrap";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import SEO from "../components/SEO";
 
 const darwinContent = `# Charles Darwin and His Contemporaries: Shaping the Theory of Evolution
 
@@ -86,13 +87,21 @@ Darwin’s work revolutionized biology, influencing fields like ecology, medicin
 `;
 
 const CharlesDarwin: React.FC = () => (
-  <Container className="py-5 flex-grow-1 d-flex flex-column align-items-center justify-content-center">
+  <>
+    <SEO 
+      title="Charles Darwin & His Era - Evolution Explorer"
+      description="Discover the life of Charles Darwin, his HMS Beagle voyage, and the scientists who shaped evolutionary theory. Explore the history of natural selection."
+      keywords="Charles Darwin, HMS Beagle, history of evolution, naturalist, Victorian science, Origin of Species, evolutionary biology"
+      canonicalUrl="https://evolutionexplorerai.com/charles-darwin"
+    />
+    <Container className="py-5 flex-grow-1 d-flex flex-column align-items-center justify-content-center">
     <Card className="shadow-lg border-0 w-100" style={{ maxWidth: 900 }}>
       <Card.Body>
         <ReactMarkdown remarkPlugins={[remarkGfm]}>{darwinContent}</ReactMarkdown>
       </Card.Body>
     </Card>
   </Container>
+  </>
 );
 
 export default CharlesDarwin;

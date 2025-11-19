@@ -1,5 +1,6 @@
 import React from "react";
 import { Container, Card } from "react-bootstrap";
+import SEO from "../components/SEO";
 
 const guideContent = `# The Theory of Evolution: A Primer
 
@@ -106,13 +107,21 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
 const EvolutionGuide: React.FC = () => (
-  <Container className="py-5 flex-grow-1 d-flex flex-column align-items-center justify-content-center">
+  <>
+    <SEO 
+      title="Evolution Guide - Understanding Natural Selection & Adaptation"
+      description="Comprehensive guide to evolution covering natural selection, adaptation, fossil evidence, and the history of evolutionary theory. Perfect for students and educators."
+      keywords="evolution guide, natural selection, adaptation, fossils, Darwin, biology education, evolutionary theory, science learning"
+      canonicalUrl="https://evolutionexplorerai.com/evolution-guide"
+    />
+    <Container className="py-5 flex-grow-1 d-flex flex-column align-items-center justify-content-center">
     <Card className="shadow-lg border-0 w-100" style={{ maxWidth: 900 }}>
       <Card.Body>
   <ReactMarkdown remarkPlugins={[remarkGfm]}>{guideContent}</ReactMarkdown>
       </Card.Body>
     </Card>
   </Container>
+  </>
 );
 
 export default EvolutionGuide;

@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { Card, Button } from "react-bootstrap";
 import ReactMarkdown from "react-markdown";
+import SEO from "../components/SEO";
 // Short intro for the home page card (from intro.md)
 const introMd = `Have you ever wondered why there are so many different kinds of animals on Earth? Or how humans came to be? The theory of evolution provides answers to these questions. Evolution is the process by which living organisms change over time, leading to the diversity of life we see today.\n\nAt its core, evolution explains how species adapt to their environments, how new species form, and how all life is connected through common ancestors. This essay will explore the history of the theory, its key principles, the evidence supporting it, and some common misconceptions. By the end, you'll have a solid understanding of one of the most important ideas in biology.`;
 const darwinIntroMd = `**Meet Charles Darwin and His Era**  \nEver wondered about the man behind the theory of evolution? Explore the life of Charles Darwin, his groundbreaking voyage on the HMS Beagle, and the scientists who shaped his ideas. Learn how Darwin wrestled with his discoveries challenging his religious beliefs and how his work revolutionized science. Perfect for high school students, this engaging guide brings history to life!`;
@@ -114,7 +115,14 @@ const Home: React.FC = () => {
   };
 
   return (
-    <main className="container py-5 flex-grow-1 d-flex flex-column align-items-center justify-content-center">
+    <>
+      <SEO 
+        title="Evolution Explorer - Discover Animal Evolution & Natural History"
+        description="Explore the animal kingdom and evolutionary history with AI-powered insights. Interactive timelines, fun facts, and educational resources about evolution, animals, and natural history."
+        keywords="evolution, animal explorer, animals, natural history, biology, science, education, AI, interactive learning, natural selection"
+        canonicalUrl="https://evolutionexplorerai.com/"
+      />
+      <main className="container py-5 flex-grow-1 d-flex flex-column align-items-center justify-content-center">
       {/* Welcome header and intro spanning 2 columns */}
       <div className="row w-100 justify-content-center mb-4" style={{ maxWidth: 900 }}>
         <div className="col-12 col-md-12">
@@ -250,6 +258,7 @@ const Home: React.FC = () => {
         </div>
       </div>
     </main>
+    </>
   );
 };
 

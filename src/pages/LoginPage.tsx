@@ -1,5 +1,6 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import SEO from "../components/SEO";
 
 const LoginPage: React.FC = () => {
   const { loginWithRedirect, logout, isAuthenticated, user, isLoading } = useAuth0();
@@ -7,7 +8,14 @@ const LoginPage: React.FC = () => {
   if (isLoading) return <div className="container py-5 text-center">Loading...</div>;
 
   return (
-    <main className="container py-5 d-flex flex-column align-items-center justify-content-center" style={{ minHeight: '60vh' }}>
+    <>
+      <SEO 
+        title="Log In - Evolution Explorer"
+        description="Log in to Evolution Explorer to save your favorite animals, track your learning journey, and access personalized evolutionary content."
+        keywords="login, sign in, authentication, user account, sign up, register"
+        canonicalUrl="https://evolutionexplorerai.com/login"
+      />
+      <main className="container py-5 d-flex flex-column align-items-center justify-content-center" style={{ minHeight: '60vh' }}>
       <div className="card shadow-lg border-0 p-4" style={{ maxWidth: 400 }}>
         <h1 className="h3 fw-bold text-success mb-3 text-center">Account</h1>
         {isAuthenticated && user ? (
@@ -27,6 +35,7 @@ const LoginPage: React.FC = () => {
         )}
       </div>
     </main>
+    </>
   );
 };
 

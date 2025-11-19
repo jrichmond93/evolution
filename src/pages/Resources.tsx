@@ -1,5 +1,6 @@
 import React from "react";
 import { Card } from "react-bootstrap";
+import SEO from "../components/SEO";
 
 const resources = [
   {
@@ -125,7 +126,14 @@ const resources = [
 ];
 
 const Resources: React.FC = () => (
-  <main className="container py-5 flex-grow-1 d-flex flex-column align-items-center justify-content-center">
+  <>
+    <SEO 
+      title="Resources - Evolution, Nature & AI Learning - Evolution Explorer"
+      description="Curated educational resources on evolution, natural history, artificial intelligence, and AI-powered learning tools. Explore museums, documentaries, and interactive websites."
+      keywords="resources, educational links, museums, documentaries, AI tools, learning resources, evolution resources, nature education"
+      canonicalUrl="https://evolutionexplorerai.com/resources"
+    />
+    <main className="container py-5 flex-grow-1 d-flex flex-column align-items-center justify-content-center">
     <div className="row w-100 justify-content-center" style={{ maxWidth: 900 }}>
       <div className="col-12">
         <Card className="shadow border-0 mb-4">
@@ -150,6 +158,7 @@ const Resources: React.FC = () => (
       </div>
     </div>
   </main>
+  </>
 );
 
 export default Resources;

@@ -1,8 +1,16 @@
 import React from "react";
 import { Card } from "react-bootstrap";
+import SEO from "../components/SEO";
 
 const Terms: React.FC = () => (
-  <main className="container py-5 flex-grow-1 d-flex flex-column align-items-center justify-content-center">
+  <>
+    <SEO 
+      title="Terms of Service - Evolution Explorer"
+      description="Terms of service for Evolution Explorer. Read our guidelines and policies for using our educational platform."
+      keywords="terms of service, terms and conditions, user agreement, legal, terms of use"
+      canonicalUrl="https://evolutionexplorerai.com/terms"
+    />
+    <main className="container py-5 flex-grow-1 d-flex flex-column align-items-center justify-content-center">
     <Card className="shadow-lg border-0 w-100" style={{ maxWidth: 700 }}>
       <Card.Body>
         <h1 className="display-5 fw-bold text-success mb-4 text-center">Terms of Service</h1>
@@ -54,6 +62,7 @@ const Terms: React.FC = () => (
       </Card.Body>
     </Card>
   </main>
+  </>
 );
 
 export default Terms;
