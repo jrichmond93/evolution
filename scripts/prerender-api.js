@@ -78,18 +78,22 @@ function sanitizeFilename(name) {
 
 async function fetchAnimalTimeline(animal) {
   console.log(`  Fetching timeline for ${animal.common_name}...`);
-  const url = `${API_BASE}/explore`;
+  const url = `${API_BASE}/timeline`;
+  const body = {
+    species_or_group_name: animal.common_name,
+    user_session_id: 'prerender-session',
+    context: { focus: 'evolutionary history' },
+    ui_preferences: { display_hint: 'timeline', max_events: 8 },
+    question_context: 'Create an evolutionary timeline highlighting key stages',
+    user_id: 'prerender-bot'
+  };
   console.log(`    URL: ${url}`);
-  console.log(`    Body: ${JSON.stringify({ animal_id: animal.id })}`);
   
   try {
-    // Try the /explore endpoint with animal_id
     const response = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        animal_id: animal.id
-      })
+      body: JSON.stringify(body)
     });
 
     console.log(`    Response status: ${response.status}`);
@@ -106,7 +110,7 @@ async function fetchAnimalTimeline(animal) {
     }
 
     const data = await response.json();
-    console.log(`    ✓ Got ${data.events?.length || data.timeline_events?.length || 0} events`);
+    console.log(`    ✓ Got timeline: ${data.title || data.species || 'success'}`);
     return data;
   } catch (error) {
     console.warn(`    ⚠️  Could not fetch timeline: ${error.message}`);
@@ -115,28 +119,51 @@ async function fetchAnimalTimeline(animal) {
 }
 
 function generateTimelineHTML(timeline) {
-  if (!timeline || !timeline.events || timeline.events.length === 0) {
+  if (!timeline) {
     return '<div class="alert alert-info">Timeline data is loading...</div>';
   }
 
   let html = '<div class="timeline-card">';
-  html += `<h2 class="mb-4">${timeline.species_or_group_name || 'Evolution'} - Timeline</h2>`;
-  html += '<div class="timeline-container">';
   
-  timeline.events.forEach((event, idx) => {
-    html += `<div class="timeline-event" data-event-${idx}>`;
-    html += `<div class="timeline-marker"></div>`;
-    html += `<div class="timeline-content">`;
-    html += `<h3>${event.title || `Event ${idx + 1}`}</h3>`;
-    html += `<p class="timeline-time"><strong>${event.time_period || 'Unknown period'}</strong></p>`;
-    html += `<p>${event.description || ''}</p>`;
-    if (event.significance) {
-      html += `<p class="timeline-significance"><em>${event.significance}</em></p>`;
-    }
-    html += `</div></div>`;
-  });
+  // Use the actual response structure from EvolutionResponse
+  const speciesName = timeline.species || timeline.species_or_group_name || 'Unknown Species';
+  const title = timeline.title || `${speciesName} - Evolutionary Timeline`;
+  const summary = timeline.summary_md || timeline.summary || '';
   
-  html += '</div></div>';
+  html += `<h2 class="mb-4">${title}</h2>`;
+  
+  if (summary) {
+    html += `<div class="timeline-summary mb-4"><p>${summary}</p></div>`;
+  }
+  
+  // Key points
+  if (timeline.key_points && timeline.key_points.length > 0) {
+    html += '<div class="key-points mb-4"><h3>Key Points</h3><ul>';
+    timeline.key_points.forEach(point => {
+      html += `<li>${point}</li>`;
+    });
+    html += '</ul></div>';
+  }
+  
+  // Timeline events (if available in old format)
+  if (timeline.events && timeline.events.length > 0) {
+    html += '<div class="timeline-container">';
+    timeline.events.forEach((event, idx) => {
+      html += `<div class="timeline-event" data-event-${idx}>`;
+      html += `<div class="timeline-marker"></div>`;
+      html += `<div class="timeline-content">`;
+      html += `<h3>${event.title || `Event ${idx + 1}`}</h3>`;
+      html += `<p class="timeline-time"><strong>${event.time_period || 'Unknown period'}</strong></p>`;
+      html += `<p>${event.description || ''}</p>`;
+      if (event.significance) {
+        html += `<p class="timeline-significance"><em>${event.significance}</em></p>`;
+      }
+      html += `</div></div>`;
+    });
+    html += '</div>';
+  }
+  
+  html += '</div>';
   return html;
 }
 
