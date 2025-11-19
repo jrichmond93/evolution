@@ -43,3 +43,4 @@ npm run build
 - Uses React Router for navigation
 - Session IDs are generated per animal exploration
 - Bootstrap for UI styling
+# Trigger build - Wed, Nov 19, 2025  2:02:25 PM
