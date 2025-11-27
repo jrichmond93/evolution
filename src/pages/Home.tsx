@@ -258,9 +258,46 @@ const Home: React.FC = () => {
           </Card>
         </div>
       </div>
-    </main>
-    </>
-  );
-};
+        {/* Cell Complexity Card */}
+        <div className="row w-100 justify-content-center mt-2" style={{ maxWidth: 900 }}>
+          <div className="col-12">
+            <Card className="shadow border-0 mb-4">
+              <Card.Body>
+                <h2 className="h4 fw-bold mb-2 text-info">Cell Complexity</h2>
+                <div className="mb-3">
+                  <ReactMarkdown>
+                    {`**Explore the complexity of biological cells**  \nCells are the building blocks of life, with intricate organization and molecular machinery. Learn how prokaryotic and eukaryotic cells work, and why their complexity rivals human engineering.`}
+                  </ReactMarkdown>
+                </div>
+                <Button variant="outline-info" className="rounded-pill px-4 fw-semibold" onClick={() => navigate("/cell-complexity")}>Discover Cell Complexity</Button>
+              </Card.Body>
+            </Card>
+          </div>
+        </div>
+      {/* Intelligent Design Card */}
+      <div className="row w-100 justify-content-center mt-2" style={{ maxWidth: 900 }}>
+        <div className="col-12">
+          <Card className="shadow border-0 mb-4">
+            <Card.Body>
+              <h2 className="h4 fw-bold mb-2" style={{ color: '#14532d' }}>Intelligent Design & Theistic Science</h2>
+              <div className="mb-3">
+                <ReactMarkdown>
+                  {`**Is the universe the result of chance, or design?**  
+What clues do cosmic fine-tuning, DNA, and the complexity of life offer about our origins?  
+Can science and faith work together to answer life's biggest questions?  
 
-export default Home;
+Explore the evidence for Intelligent Design and theistic science. Discover how fine-tuning, biological complexity, and the historical foundations of science point to a purposeful designer. This series covers cosmology, DNA, irreducible complexity, and more.`}
+                </ReactMarkdown>
+              </div>
+              <Button style={{ backgroundColor: '#14532d', borderColor: '#14532d', color: '#fff' }} className="rounded-pill px-4 fw-semibold" onClick={() => navigate("/intelligent-design")}>Explore Intelligent Design</Button>
+            </Card.Body>
+          </Card>
+        </div>
+      </div>
+
+      </main>
+    </>
+    );
+  };
+
+  export default Home;
