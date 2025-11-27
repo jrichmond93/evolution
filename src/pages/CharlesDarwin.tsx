@@ -71,7 +71,10 @@ This struggle made Darwin cautious, delaying publication until his evidence was 
 
 *On the Origin of Species* sparked debate, with supporters like Huxley championing it and critics, often religious figures, opposing it. Over time, the scientific community embraced evolution, and the “Modern Synthesis” in the 20th century combined Darwin’s ideas with genetics.
 
+
 Darwin’s work revolutionized biology, influencing fields like ecology, medicine, and anthropology. His legacy endures in our understanding of biodiversity and adaptation.
+
+Darwin’s ideas also played a major role in the rise of scientific materialism, a worldview that emphasizes natural processes over supernatural explanations. To learn more about how Darwin’s work influenced this shift and the debates that followed, read our discussion on [Scientific Materialism](/discussions/scientific-materialism).
 
 | Key Work | Year | Impact |
 |---------|------|--------|

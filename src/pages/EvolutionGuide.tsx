@@ -99,9 +99,12 @@ This tree shows how all life branches from a common root.
 
 ## Conclusion
 
+
 The theory of evolution is a cornerstone of biology, explaining the unity and diversity of life. From Darwin's observations to modern genetics, it unites evidence into a coherent picture. Understanding evolution helps us appreciate our place in nature and tackle real-world issues like conservation and disease.
 
-Explore more on Evolution Explorer by searching for species or asking questions—dive into the tree of life!`;
+Evolution remains a vibrant area of scientific inquiry, and debates about its mechanisms and implications continue. Some scientists and philosophers have proposed alternative perspectives, such as Intelligent Design, which argues that certain features of the universe and life are best explained by an intelligent cause rather than undirected processes. If you're interested in exploring these ideas and how they relate to evolutionary theory, check out our overview on [Intelligent Design](/intelligent-design).
+
+Explore more on Evolution Explorer by searching for species or asking questions—dive into the tree of life!`
 
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
