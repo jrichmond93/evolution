@@ -41,6 +41,7 @@
   "rewrites": [
     { "source": "/explore/:animal", "destination": "/explore/:animal.html" },
     { "source": "/discussions/:slug", "destination": "/index.html" },
+    { "source": "/intelligent-design", "destination": "/index.html" },
     { "source": "/about", "destination": "/index.html" },
     { "source": "/contact", "destination": "/index.html" },
     { "source": "/privacy", "destination": "/index.html" },
