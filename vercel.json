@@ -39,6 +39,7 @@
     }
   ],
   "rewrites": [
+    { "source": "/explore", "destination": "/index.html" },
     { "source": "/explore/:animal", "destination": "/explore/:animal.html" },
     { "source": "/discussions/:slug", "destination": "/index.html" },
     { "source": "/intelligent-design", "destination": "/index.html" },
