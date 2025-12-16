@@ -25,10 +25,12 @@ const Footer: React.FC = () => (
             <Link to="/evolution-guide" className="text-white small text-decoration-none">Primer</Link>
             <Link to="/resources" className="text-white small text-decoration-none">Resources</Link>
             <a href="/sitemap.xml" className="text-white small text-decoration-none">Sitemap</a>
-            <a href="https://twitter.com/" className="text-white small text-decoration-none" target="_blank" rel="noopener noreferrer">Twitter</a>
-            <a href="https://facebook.com/" className="text-white small text-decoration-none" target="_blank" rel="noopener noreferrer">Facebook</a>
-            <a href="https://instagram.com/" className="text-white small text-decoration-none" target="_blank" rel="noopener noreferrer">Instagram</a>
-            <a href="https://youtube.com/" className="text-white small text-decoration-none" target="_blank" rel="noopener noreferrer">YouTube</a>
+            <a href="https://www.facebook.com/aisuretech/" className="text-white small text-decoration-none" target="_blank" rel="noopener noreferrer">Facebook</a>
+            <a href="https://www.instagram.com/aisuretech" className="text-white small text-decoration-none" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://www.tiktok.com/@aisuretech" className="text-white small text-decoration-none" target="_blank" rel="noopener noreferrer">TikTok</a>
+            <a href="https://www.linkedin.com/company/aisuretech" className="text-white small text-decoration-none" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="https://x.com/aisuretech" className="text-white small text-decoration-none" target="_blank" rel="noopener noreferrer">X</a>
+            <a href="https://www.youtube.com/@AISureTech" className="text-white small text-decoration-none" target="_blank" rel="noopener noreferrer">YouTube</a>
           </div>
         </div>
       </div>
