@@ -133,29 +133,51 @@ const Explore: React.FC = () => {
       // Fallback: fetch from API if prerendered content not found (dev mode, etc.)
       console.log('No prerendered content found, fetching from API');
       fetch('https://evolution.aisuretech.net/api/evolution/animals')
-        .then(res => res.json())
+        .then(res => {
+          if (!res.ok) {
+            throw new Error('API request failed');
+          }
+          return res.json();
+        })
         .then(data => {
-          const foundAnimal = data.find((a: any) => 
-            a.common_name.toLowerCase().replace(/\s+/g, '-') === animalSlug.toLowerCase()
-          );
+          // Normalize the slug for comparison
+          const normalizedSlug = animalSlug.toLowerCase().trim();
+          
+          // Find animal by matching slug with common_name (normalized)
+          const foundAnimal = data.find((a: any) => {
+            const animalSlug = a.common_name.toLowerCase().replace(/\s+/g, '-').trim();
+            return animalSlug === normalizedSlug;
+          });
+          
           if (foundAnimal) {
             setAnimal(foundAnimal);
+            console.log('Found animal from API:', foundAnimal.common_name);
+            
             // Remove prerendered content after React has the data
             const prerenderContent = document.getElementById('prerendered-content');
             if (prerenderContent) {
               prerenderContent.remove();
             }
           } else {
-            navigate('/');
+            // Log available animals for debugging
+            console.log('Animal not found. Available animals:', 
+              data.map((a: any) => ({
+                name: a.common_name,
+                slug: a.common_name.toLowerCase().replace(/\s+/g, '-')
+              }))
+            );
+            console.error(`No animal found for slug: ${animalSlug}`);
+            // Don't navigate away, let the component show "No Animal Selected"
+            // This allows prerendered content to display
           }
         })
         .catch(err => {
           console.error('Error fetching animal:', err);
-          navigate('/');
+          // Don't navigate away on error, let prerendered content show
         })
         .finally(() => setFetchingAnimal(false));
     }
-  }, [animalSlug, location.state, animal, navigate, fetchingAnimal]);
+  }, [animalSlug, location.state, animal, fetchingAnimal]);
 
   // Handle prerender mode from URL params
   useEffect(() => {
@@ -259,7 +281,37 @@ const Explore: React.FC = () => {
       });
   }
 
-  if (!animal) {
+  // Show loading state while fetching animal data
+  if (!animal && fetchingAnimal && animalSlug) {
+    return (
+      <main className="container py-5 flex-grow-1 d-flex flex-column align-items-center justify-content-center" style={{ minHeight: '60vh' }}>
+        <div className="spinner-border text-success" role="status">
+          <span className="visually-hidden">Loading...</span>
+        </div>
+        <p className="mt-3">Loading animal data...</p>
+        
+        {/* Keep prerendered content visible */}
+        <div id="prerendered-content" className="mt-4"></div>
+      </main>
+    );
+  }
+
+  // Show "Animal Not Found" if we have a slug but no animal after fetching
+  if (!animal && animalSlug && !fetchingAnimal) {
+    return (
+      <main className="container py-5 flex-grow-1 d-flex flex-column align-items-center justify-content-center" style={{ minHeight: '60vh' }}>
+        <h1 className="display-6 fw-bold text-success mb-3">Animal Not Found</h1>
+        <div className="mb-4 text-secondary">The animal "{animalSlug}" could not be found in our database.</div>
+        <button className="btn btn-success px-4 py-2 rounded-pill" onClick={() => navigate("/")}>Browse All Animals</button>
+        
+        {/* Keep prerendered content visible if it exists */}
+        <div id="prerendered-content" className="mt-4"></div>
+      </main>
+    );
+  }
+
+  // Show "No Animal Selected" only if there's no slug in the URL
+  if (!animal && !animalSlug) {
     return (
       <main className="container py-5 flex-grow-1 d-flex flex-column align-items-center justify-content-center" style={{ minHeight: '60vh' }}>
         <h1 className="display-6 fw-bold text-success mb-3">No Animal Selected</h1>
