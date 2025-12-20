@@ -225,7 +225,7 @@ const Explore: React.FC = () => {
         context: { focus: "evolutionary history" },
         ui_preferences: { display_hint: "timeline", max_events: 8 },
         user_session_id: userSessionId || "SESSION-UNKNOWN",
-        question_context: "Create a evolutionary timeline highlighting key stages",
+        question_context: "Create an evolutionary timeline highlighting key stages",
         user_id: isAuthenticated && user && user.sub ? user.sub : "notauthenticated"
       }),
     })

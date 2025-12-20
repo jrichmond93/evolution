@@ -12,8 +12,8 @@ const animals = [
   'american-robin',
   'ankylosaurus',
   'apatosaurus',
-  'atlantic-cod'
-/*   'atlantic-salmon',
+  'atlantic-cod',
+  'atlantic-salmon',
   'bald-eagle',
   'ball-python',
   'bearded-dragon',
@@ -21,7 +21,7 @@ const animals = [
   'brachiosaurus',
   'brown-bear',
   'canada-goose',
-  'chicken',
+ /*  'chicken',
   'clownfish',
   'cow',
   'crocodile',
@@ -58,8 +58,8 @@ const animals = [
   'tuna-yellowfin' */
 ];
 
-//const BASE_URL = 'https://www.aievolutionexplorer.com/explore';
-const BASE_URL = 'http://localhost:5173/explore';
+const BASE_URL = 'https://www.aievolutionexplorer.com/explore';
+//const BASE_URL = 'http://localhost:5173/explore';
 
 const DELAY_MS = 9000; // 2 seconds between requests
 
