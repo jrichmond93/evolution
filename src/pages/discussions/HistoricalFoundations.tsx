@@ -3,6 +3,7 @@ import { Container, Card, Button } from "react-bootstrap";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import SEO from "../../components/SEO";
+import BreadcrumbSchema from "../../components/BreadcrumbSchema";
 import { Link } from "react-router-dom";
 
 const discussion1Content = `# The Historical Foundations of Science in Theism
@@ -71,6 +72,13 @@ const Discussion1: React.FC = () => (
       description="Explore the theistic roots of modern science, the Scientific Revolution, and the worldview that enabled Newton, Kepler, and others to transform our understanding of nature."
       keywords="science history, theism, scientific revolution, Newton, Kepler, Judeo-Christian, origins, philosophy"
       canonicalUrl="https://aievolutionexplorer.com/discussions/historical-foundations"
+    />
+    <BreadcrumbSchema 
+      items={[
+        { name: "Home", url: "https://www.aievolutionexplorer.com/" },
+        { name: "Intelligent Design", url: "https://www.aievolutionexplorer.com/intelligent-design" },
+        { name: "Historical Foundations", url: "https://www.aievolutionexplorer.com/discussions/historical-foundations" }
+      ]}
     />
     <Container className="py-5 flex-grow-1 d-flex flex-column align-items-center justify-content-center">
       <Card className="shadow-lg border-0 w-100" style={{ maxWidth: 900 }}>

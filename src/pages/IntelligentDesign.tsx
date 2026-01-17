@@ -3,6 +3,7 @@ import { Container, Card } from "react-bootstrap";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import SEO from "../components/SEO";
+import BreadcrumbSchema from "../components/BreadcrumbSchema";
 import { Link } from "react-router-dom";
 
 const idContent = `# Intelligent Design and Theistic Science: Exploring the Evidence
@@ -70,6 +71,12 @@ const IntelligentDesign: React.FC = () => (
       description="Explore the evidence for Intelligent Design and theistic science, including fine-tuning, biological complexity, and the historical foundations of science."
       keywords="intelligent design, theistic science, fine-tuning, irreducible complexity, DNA, cosmology, privileged planet, origin of life, specified complexity"
       canonicalUrl="https://aievolutionexplorer.com/intelligent-design"
+    />
+    <BreadcrumbSchema 
+      items={[
+        { name: "Home", url: "https://www.aievolutionexplorer.com/" },
+        { name: "Intelligent Design", url: "https://www.aievolutionexplorer.com/intelligent-design" }
+      ]}
     />
     <script type="application/ld+json">
       {`

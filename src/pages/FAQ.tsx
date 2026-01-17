@@ -49,15 +49,32 @@ const faqs = [
   },
 ];
 
-const FAQ: React.FC = () => (
-  <>
-    <SEO 
-      title="FAQ - Frequently Asked Questions - Evolution Explorer"
-      description="Frequently asked questions about Evolution Explorer. Learn how to use our platform, explore animals, and discover evolutionary history."
-      keywords="faq, help, questions, answers, how to use, tutorial, evolution explorer guide"
-      canonicalUrl="https://aievolutionexplorer.com/faq"
-    />
-    <main className="container py-5 flex-grow-1 d-flex flex-column align-items-center justify-content-center">
+const FAQ: React.FC = () => {
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.q,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.a
+      }
+    }))
+  };
+
+  return (
+    <>
+      <SEO 
+        title="FAQ - Frequently Asked Questions - Evolution Explorer"
+        description="Frequently asked questions about Evolution Explorer. Learn how to use our platform, explore animals, and discover evolutionary history."
+        keywords="faq, help, questions, answers, how to use, tutorial, evolution explorer guide"
+        canonicalUrl="https://aievolutionexplorer.com/faq"
+      />
+      <script type="application/ld+json">
+        {JSON.stringify(faqSchema)}
+      </script>
+      <main className="container py-5 flex-grow-1 d-flex flex-column align-items-center justify-content-center">
     <Card className="shadow-lg border-0 w-100" style={{ maxWidth: 700 }}>
       <Card.Body>
         <h1 className="display-5 fw-bold text-success mb-4 text-center">Frequently Asked Questions</h1>
@@ -72,7 +89,8 @@ const FAQ: React.FC = () => (
       </Card.Body>
     </Card>
   </main>
-  </>
-);
+    </>
+  );
+};
 
 export default FAQ;

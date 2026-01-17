@@ -55,6 +55,101 @@ const resources = [
         name: "Runway",
         url: "https://runwayml.com/",
         desc: "A suite of AI tools for video editing, generation, and effects, enabling creators to produce cinematic content, remove backgrounds, or animate scenes effortlessly."
+      },
+      {
+        name: "AI Sure Tech",
+        url: "https://aisuretech.com/",
+        desc: "AI-Powered Website Network. Discover AI-driven tools, education, and insights for your growth."
+      },
+      {
+        name: "Learn AI Stock Tickers",
+        url: "https://learn.aistocktickers.com/",
+        desc: "Master Stock Market Investing with AI. Transform your investment journey with comprehensive educational resources powered by cutting-edge AI analysis."
+      },
+      {
+        name: "AI Evolution Explorer",
+        url: "https://www.aievolutionexplorer.com/",
+        desc: "Discover the evolutionary history of animals, explore fascinating facts, and learn about the diversity of life on Earth."
+      },
+      {
+        name: "AI Wisdom Council",
+        url: "https://www.aiwisdomcouncil.com/",
+        desc: "Choose an advisor and begin asking your questions — each member of the Wisdom Council offers a unique perspective."
+      },
+      {
+        name: "Feather Guess",
+        url: "https://featherguess.com/",
+        desc: "Test your bird knowledge. Guess the feather!"
+      },
+      {
+        name: "Create A Dish",
+        url: "https://www.createadish.com/",
+        desc: "Your ultimate culinary companion, designed to help home cooks and food enthusiasts discover and create delicious recipes tailored to their preferences."
+      },
+      {
+        name: "AltHistAI Explore",
+        url: "https://althistai.aisuretech.com/",
+        desc: "Explore the Paths Not Taken. Discover how history could have unfolded differently with AI-powered interactive simulations."
+      },
+      {
+        name: "Balanced Debate",
+        url: "https://www.balanceddebate.com/",
+        desc: "Explores diverse perspectives through structured debate, presenting balanced arguments on a wide range of topics using advanced AI technology."
+      },
+      {
+        name: "AI Trendified",
+        url: "https://www.aitrendified.com/",
+        desc: "Today's Trending Digest. Explore the most talked-about topics with matching TED talks and AI insights."
+      },
+      {
+        name: "Kitty Vids",
+        url: "https://www.kitty-vids.com/",
+        desc: "Your ultimate destination for adorable cat videos and comprehensive cat care guides."
+      },
+      {
+        name: "Puppy Vids",
+        url: "https://www.puppy-vids.com/",
+        desc: "Your ultimate destination for adorable dog videos and comprehensive dog care guides."
+      },
+      {
+        name: "AI Stock Tickers Blog",
+        url: "https://blog.aistocktickers.com/",
+        desc: "AI-Powered Market Intelligence & Insights. Discover cutting-edge analysis on AI-driven stock trading, algorithmic strategies, and financial technology innovations."
+      },
+      {
+        name: "A Stoic Says",
+        url: "https://astoicsays.com/",
+        desc: "Today's headlines paired with timeless Stoic wisdom. Daily opinion pieces accompanied with Stoic reflections inspired by Marcus Aurelius and Epictetus."
+      },
+      {
+        name: "Cryptiment",
+        url: "https://cryptiment.com/",
+        desc: "Advanced cryptocurrency sentiment analysis powered by real-time data from social media, news sources, and on-chain metrics."
+      },
+      {
+        name: "Idea To Market AI",
+        url: "https://www.ideatomarketai.com/",
+        desc: "Professional-grade market research tools to validate business ideas, understand markets, and make informed decisions with confidence."
+      },
+      {
+        name: "Opposing Point",
+        url: "https://opposingpoint.com/",
+        desc: "Escape the Echo Chamber and Challenge Your Ideas with AI Precision. AI modes challenge your thinking, expose logical fallacies, and prepare you for real-world opposition."
+      },
+      {
+        name: "Ideo Bridge",
+        url: "https://ideobridge.com/",
+        desc: "Bridge ideological divides through respectful dialogue. Curates daily opinions from diverse perspectives and generates thoughtful counter-responses."
+      },
+      {
+        name: "AI Mortgage Calc",
+        url: "https://aimortgagecalc.com/",
+        desc: "Calculate your mortgage payments with precision. Get detailed amortization schedules, payment breakdowns, and AI-powered explanations."
+      },
+      {
+        name: "Policy Clown",
+        url: "https://policyclown.com/",
+        desc: "Daily satirical political predictions powered by artificial intelligence, combining breaking news with documented political stances for entertainment."
       }
     ]
   },
