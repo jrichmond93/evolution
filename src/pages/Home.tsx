@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { Card, Button } from "react-bootstrap";
 import ReactMarkdown from "react-markdown";
 import SEO from "../components/SEO";
+import RecommendationWidget from "../components/RecommendationWidget";
 // Short intro for the home page card (from intro.md)
 const introMd = `Have you ever wondered why there are so many different kinds of animals on Earth? Or how humans came to be? The theory of evolution provides answers to these questions. Evolution is the process by which living organisms change over time, leading to the diversity of life we see today.\n\nAt its core, evolution explains how species adapt to their environments, how new species form, and how all life is connected through common ancestors. This essay will explore the history of the theory, its key principles, the evidence supporting it, and some common misconceptions. By the end, you'll have a solid understanding of one of the most important ideas in biology.`;
 const darwinIntroMd = `**Meet Charles Darwin and His Era**  \nEver wondered about the man behind the theory of evolution? Explore the life of Charles Darwin, his groundbreaking voyage on the HMS Beagle, and the scientists who shaped his ideas. Learn how Darwin wrestled with his discoveries challenging his religious beliefs and how his work revolutionized science. Perfect for high school students, this engaging guide brings history to life!`;
@@ -294,6 +295,8 @@ Explore the evidence for Intelligent Design and theistic science. Discover how f
           </Card>
         </div>
       </div>
+
+      <RecommendationWidget />
 
       </main>
     </>

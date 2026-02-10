@@ -5,6 +5,7 @@ import remarkGfm from "remark-gfm";
 import SEO from "../components/SEO";
 import BreadcrumbSchema from "../components/BreadcrumbSchema";
 import { Link } from "react-router-dom";
+import RecommendationWidget from "../components/RecommendationWidget";
 
 const idContent = `# Intelligent Design and Theistic Science: Exploring the Evidence
 
@@ -146,6 +147,7 @@ const IntelligentDesign: React.FC = () => (
           >{idContent}</ReactMarkdown>
       </Card.Body>
     </Card>
+    <RecommendationWidget />
   </Container>
   </>
 );

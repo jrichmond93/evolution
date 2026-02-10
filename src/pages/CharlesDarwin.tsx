@@ -3,6 +3,7 @@ import { Container, Card } from "react-bootstrap";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import SEO from "../components/SEO";
+import RecommendationWidget from "../components/RecommendationWidget";
 
 const darwinContent = `# Charles Darwin and His Contemporaries: Shaping the Theory of Evolution
 
@@ -103,6 +104,7 @@ const CharlesDarwin: React.FC = () => (
         <ReactMarkdown remarkPlugins={[remarkGfm]}>{darwinContent}</ReactMarkdown>
       </Card.Body>
     </Card>
+    <RecommendationWidget />
   </Container>
   </>
 );

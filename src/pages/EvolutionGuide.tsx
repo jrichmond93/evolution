@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, Card } from "react-bootstrap";
 import SEO from "../components/SEO";
+import RecommendationWidget from "../components/RecommendationWidget";
 
 const guideContent = `# The Theory of Evolution: A Primer
 
@@ -123,6 +124,7 @@ const EvolutionGuide: React.FC = () => (
   <ReactMarkdown remarkPlugins={[remarkGfm]}>{guideContent}</ReactMarkdown>
       </Card.Body>
     </Card>
+    <RecommendationWidget />
   </Container>
   </>
 );

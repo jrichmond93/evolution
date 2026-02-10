@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, useRef } from "react";
 import SEO from "../components/SEO";
+import RecommendationWidget from "../components/RecommendationWidget";
 // Easily extendable list of fun evolution/animal facts
 const DID_YOU_KNOW_FACTS = [
   "The blue whale is the largest animal to have ever lived on Earth!",
@@ -513,6 +514,7 @@ const Explore: React.FC = () => {
           <button className="btn btn-link btn-sm text-white ms-3 p-0 align-baseline" onClick={() => setShowToast(false)}>Dismiss</button>
         </div>
       )}
+      <RecommendationWidget />
     </main>
     </>
   );
