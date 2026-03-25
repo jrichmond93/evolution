@@ -217,6 +217,46 @@ const resources = [
         desc: "Block-based programming platform for kids, with creative projects and AI extensions."
       }
     ]
+  },
+  {
+    section: "More Websites by AI Sure Tech",
+    items: [
+      {
+        name: "Headline Lingo",
+        url: "https://headlinelingo.com/",
+        desc: "Master Spanish, French, German, and more by reading today's top news stories. Get instant AI-powered translations, detailed grammar explanations, and save vocabulary to your personal library. Free language learning through real-world content."
+      },
+      {
+        name: "Task Breezer",
+        url: "https://taskbreezer.com/",
+        desc: "Task Breezer is a modern, intuitive Kanban board application designed to help you manage your tasks with ease and efficiency. We believe task management should be simple, fast, and accessible to everyone. Task Breezer combines powerful features with a clean interface to help you stay organized and productive without overwhelming complexity."
+      },
+      {
+        name: "Daily Earth View",
+        url: "https://dailyearthview.com",
+        desc: "Discover breathtaking daily Earth views from space, captured by NASA's EPIC camera on the DSCOVR spacecraft. Dive into interactive images showcasing our planet's dynamic weather patterns, cloud formations, rotating landscapes, and natural phenomena in high-resolution detail. Ideal for space enthusiasts, educators, and anyone captivated by the iconic blue marble Earth - explore the ultimate Earth from space archive at DailyEarthView.com."
+      },
+      {
+        name: "Daily Calm AI",
+        url: "https://dailycalmai.com",
+        desc: "Daily Calm AI helps you calm down fast, build a simple self care routine, and generate personalized affirmations without clutter. Explore practical self care ideas, stress relief techniques (including breathing exercises and grounding scripts), and daily affirmations you can repeat in minutes."
+      },
+      {
+        name: "Goals To Systems",
+        url: "https://goalstosystems.com",
+        desc: "AI-powered tool for transforming ambitious goals into sustainable systems. Turns your objective into repeatable processes that build momentum over time. Where personal development becomes accessible, fun, and effective - no lectures, just practical support."
+      },
+      {
+        name: "Dice Odysseys",
+        url: "https://diceodysseys.com/",
+        desc: "Dice Odyssey is an immersive web-based dice game that blends ancient Odyssey myths with sci-fi strategy, where players race across a shrinking galaxy to claim cosmic MacGuffins using clever dice allocations for movement, claims, and sabotage. Choose from diverse AI opponents like the heroic Odys or enchanting Circe, or challenge friends in seamless multiplayer sessions - perfect for quick solo distractions or epic group battles. Built for board game enthusiasts, it is free to play with easy hotseat options and upcoming real-time online features, turning nostalgic classics into portable galactic adventures."
+      },
+      {
+        name: "Dog Weave",
+        url: "https://www.dogweave.com/",
+        desc: "Dog Weave is an interactive simulator where you can combine different breeds of dog, predict trait blends, and explore multi-generation outcomes. More than just an image creation tool, Dog Weave is an AI dog genetics simulator. Continue breeding from each hybrid to map evolving family trees over generations."
+      }
+    ]
   }
 ];
 
