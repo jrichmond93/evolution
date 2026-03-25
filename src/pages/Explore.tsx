@@ -47,6 +47,7 @@ const Explore: React.FC = () => {
   const navigate = useNavigate();
   // Get session id from navigation state
   const [userSessionId, setUserSessionId] = useState<string | null>(null);
+  const lastFetchedSlugRef = useRef<string | null>(null);
 
   // Fact rotator state (must be after loading is declared)
   const [factIdx, setFactIdx] = useState(0);
@@ -101,7 +102,8 @@ const Explore: React.FC = () => {
 
   // Extract animal data from prerendered content or fetch from API
   useEffect(() => {
-    if (animalSlug && !location.state?.animal && !animal && !fetchingAnimal) {
+    if (animalSlug && !location.state?.animal && !animal && lastFetchedSlugRef.current !== animalSlug) {
+      lastFetchedSlugRef.current = animalSlug;
       setFetchingAnimal(true);
       
       // First, try to extract animal data from prerendered HTML
@@ -144,11 +146,25 @@ const Explore: React.FC = () => {
           // Normalize the slug for comparison
           const normalizedSlug = animalSlug.toLowerCase().trim();
           
-          // Find animal by matching slug with common_name (normalized)
-          const foundAnimal = data.find((a: any) => {
-            const animalSlug = a.common_name.toLowerCase().replace(/\s+/g, '-').trim();
-            return animalSlug === normalizedSlug;
-          });
+          // Find animal by matching slug with common_name.
+          // Use the same sanitize logic as the prerender scripts:
+          // strip all non-alphanumeric chars → dashes, so "Shark (Great White)" → "shark-great-white"
+          const sanitize = (name: string) =>
+            name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+
+          let foundAnimal = data.find((a: any) => sanitize(a.common_name) === normalizedSlug);
+
+          // Fallback: match by word set (handles different word order in URL slugs)
+          if (!foundAnimal) {
+            const slugWords = new Set(normalizedSlug.split('-'));
+            foundAnimal = data.find((a: any) => {
+              // Strip parens/special chars from name words before comparing
+              const nameWords = new Set(
+                a.common_name.toLowerCase().replace(/[^a-z0-9\s]/g, '').split(/\s+/)
+              );
+              return slugWords.size === nameWords.size && [...slugWords].every(w => nameWords.has(w));
+            });
+          }
           
           if (foundAnimal) {
             setAnimal(foundAnimal);
@@ -160,16 +176,7 @@ const Explore: React.FC = () => {
               prerenderContent.remove();
             }
           } else {
-            // Log available animals for debugging
-            console.log('Animal not found. Available animals:', 
-              data.map((a: any) => ({
-                name: a.common_name,
-                slug: a.common_name.toLowerCase().replace(/\s+/g, '-')
-              }))
-            );
             console.error(`No animal found for slug: ${animalSlug}`);
-            // Don't navigate away, let the component show "No Animal Selected"
-            // This allows prerendered content to display
           }
         })
         .catch(err => {
@@ -178,7 +185,7 @@ const Explore: React.FC = () => {
         })
         .finally(() => setFetchingAnimal(false));
     }
-  }, [animalSlug, location.state, animal, fetchingAnimal]);
+  }, [animalSlug, location.state, animal]);
 
   // Handle prerender mode from URL params
   useEffect(() => {
@@ -328,7 +335,7 @@ const Explore: React.FC = () => {
         title={animal ? `Explore ${animal.common_name} - Evolution Timeline` : "Explore Animals - Interactive Evolution Timelines"}
         description={animal ? `Discover the evolutionary history of ${animal.common_name} (${animal.scientific_name}) with AI-generated timelines, fun facts, and detailed information about adaptation and natural selection.` : "Explore individual animals and their evolutionary history with AI-generated timelines, fun facts, and detailed information about adaptation and natural selection."}
         keywords="explore animals, evolutionary timeline, animal history, species, biodiversity, natural selection, adaptation"
-        canonicalUrl="https://aievolutionexplorer.com/explore"
+        canonicalUrl={animal && animalSlug ? `https://www.aievolutionexplorer.com/explore/${animalSlug}` : "https://www.aievolutionexplorer.com/explore"}
       />
       <main className="container py-5 flex-grow-1 d-flex flex-column align-items-center justify-content-center">
       <div className="w-100" style={{ maxWidth: 1100 }}>

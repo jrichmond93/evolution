@@ -111,7 +111,8 @@ const Home: React.FC = () => {
   const handleStart = () => {
     if (selectedAnimal) {
       const sessionId = generateSessionId();
-      const slug = selectedAnimal.common_name.toLowerCase().replace(/\s+/g, '-');
+      // Use same sanitize logic as prerender scripts so UI slugs match sitemap URLs
+      const slug = selectedAnimal.common_name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
       navigate(`/explore/${slug}`, { state: { animal: selectedAnimal, user_session_id: sessionId } });
     }
   };

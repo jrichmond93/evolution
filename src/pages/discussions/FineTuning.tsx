@@ -87,10 +87,10 @@ In contrast, the inference to intelligent design, as articulated by scholars lik
 const Discussion4: React.FC = () => (
   <>
     <SEO 
-      title="Discussion 4: [Title from content.md] - Evolution Explorer"
-      description="Explore Discussion 4: [Short summary from content.md]"
-      keywords="cosmology, universe, philosophy, theology, discussion 4"
-      canonicalUrl="https://aievolutionexplorer.com/discussions/discussion-4"
+      title="Fine-Tuning: Precision in Cosmic Constants - Evolution Explorer"
+      description="Explore the fine-tuning of cosmic constants, the anthropic principle, and the case for intelligent design. Discover why physicists and philosophers see purpose in the universe's precise calibration."
+      keywords="fine-tuning, cosmological constant, anthropic principle, intelligent design, physical constants, cosmology, universe, Stephen Meyer, multiverse"
+      canonicalUrl="https://aievolutionexplorer.com/discussions/fine-tuning"
     />
     <Container className="py-5 flex-grow-1 d-flex flex-column align-items-center justify-content-center">
       <Card className="shadow-lg border-0 w-100" style={{ maxWidth: 900 }}>
