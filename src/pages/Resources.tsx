@@ -150,6 +150,16 @@ const resources = [
         name: "Policy Clown",
         url: "https://policyclown.com/",
         desc: "Daily satirical political predictions powered by artificial intelligence, combining breaking news with documented political stances for entertainment."
+      },
+      {
+        name: "Ideal Match AI",
+        url: "https://www.idealmatchai.com/",
+        desc: "AI-powered platform that helps users generate a romantic match based on their personalized profile in minutes.  Once generated, the match becomes interactive, allowing real-time chat to explore what you truly seek in a partner."
+      },
+      {
+        name: "Trump Derangement Syndrome",
+        url: "https://tds.policyclown.com",
+        desc: "Satirical, AI-powered daily publication by PolicyClown.com focused on mock-scientific political comedy. TDS Watch covers the cultural and rhetorical term used to describe commentary or reactions to Donald Trump that are disproportionate, hysterical, or factually unmoored."
       }
     ]
   },

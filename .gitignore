@@ -50,3 +50,5 @@ dev-notes/
 *.njsproj
 *.sln
 *.sw?
+
+/docs/
