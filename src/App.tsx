@@ -24,6 +24,7 @@ import Explore from "./pages/Explore";
 import EvolutionGuide from "./pages/EvolutionGuide";
 import CharlesDarwin from "./pages/CharlesDarwin";
 import CellComplexity from "./pages/CellComplexity";
+import HumanEvolution from "./pages/HumanEvolution";
 import IntelligentDesign from "./pages/IntelligentDesign";
 import HistoricalFoundations from "./pages/discussions/HistoricalFoundations";
 import ScientificMaterialism from "./pages/discussions/ScientificMaterialism";
@@ -53,6 +54,7 @@ const App: React.FC = () => {
           <Route path="/evolution-guide" element={<Layout><EvolutionGuide /></Layout>} />
           <Route path="/charles-darwin" element={<Layout><CharlesDarwin /></Layout>} />
           <Route path="/cell-complexity" element={<Layout><CellComplexity /></Layout>} />
+          <Route path="/human-evolution" element={<Layout><HumanEvolution /></Layout>} />
                     <Route path="/intelligent-design" element={<Layout><IntelligentDesign /></Layout>} />
                     <Route path="/discussions/historical-foundations" element={<Layout><HistoricalFoundations /></Layout>} />
                     <Route path="/discussions/scientific-materialism" element={<Layout><ScientificMaterialism /></Layout>} />

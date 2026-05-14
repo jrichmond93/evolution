@@ -276,6 +276,22 @@ const Home: React.FC = () => {
             </Card>
           </div>
         </div>
+        {/* Human Evolution Card */}
+        <div className="row w-100 justify-content-center mt-2" style={{ maxWidth: 900 }}>
+          <div className="col-12">
+            <Card className="shadow border-0 mb-4">
+              <Card.Body>
+                <h2 className="h4 fw-bold mb-2" style={{ color: '#78350f' }}>Human Evolution</h2>
+                <div className="mb-3">
+                  <ReactMarkdown>
+                    {`**Trace the six-million-year journey to Homo sapiens**  \nFrom bipedal australopithecines to Neanderthals and modern humans, discover the fossils, ancient DNA, and key adaptations that shaped our species. Explore the science of what makes us uniquely human.`}
+                  </ReactMarkdown>
+                </div>
+                <Button style={{ backgroundColor: '#78350f', borderColor: '#78350f', color: '#fff' }} className="rounded-pill px-4 fw-semibold" onClick={() => navigate("/human-evolution")}>Explore Human Evolution</Button>
+              </Card.Body>
+            </Card>
+          </div>
+        </div>
       {/* Intelligent Design Card */}
       <div className="row w-100 justify-content-center mt-2" style={{ maxWidth: 900 }}>
         <div className="col-12">
